@@ -6,7 +6,7 @@ import { User, UserDocument, AuthToken } from "../models/User";
 import { Request, Response, NextFunction } from "express";
 import { IVerifyOptions } from "passport-local";
 import { WriteError } from "mongodb";
-import { check, sanitize, validationResult } from "express-validator";
+import { check, validationResult } from "express-validator";
 import "../config/passport";
 
 /**
@@ -33,10 +33,8 @@ export const postLogin = async (
 ) => {
   await check("email", "Email is not valid").isEmail().run(req);
   await check("password", "Password cannot be blank")
-    .isLength({ min: 1 })
+    .isLength({ min: 4 })
     .run(req);
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  await sanitize("email").normalizeEmail({ gmail_remove_dots: false }).run(req);
 
   const errors = validationResult(req);
 
@@ -104,9 +102,7 @@ export const postSignup = async (
   await check("confirmPassword", "Passwords do not match")
     .equals(req.body.password)
     .run(req);
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  await sanitize("email").normalizeEmail({ gmail_remove_dots: false }).run(req);
-
+  
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -166,7 +162,7 @@ export const postUpdateProfile = async (
     .isEmail()
     .run(req);
   // eslint-disable-next-line @typescript-eslint/camelcase
-  await sanitize("email").normalizeEmail({ gmail_remove_dots: false }).run(req);
+  // await sanitize("email").normalizeEmail({ gmail_remove_dots: false }).run(req);
 
   const errors = validationResult(req);
 
@@ -425,8 +421,6 @@ export const postForgot = async (
   await check("email", "Please enter a valid email address.")
     .isEmail()
     .run(req);
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  await sanitize("email").normalizeEmail({ gmail_remove_dots: false }).run(req);
 
   const errors = validationResult(req);
 

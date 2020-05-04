@@ -7,6 +7,6 @@ import * as apiController from "../controllers/api";
 /**
  * API examples routes.
  */
-router.get("/api", apiController.getApi);
+router.get("/", apiController.getApi);
 
 export default router;

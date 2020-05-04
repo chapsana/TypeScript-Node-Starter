@@ -7,7 +7,5 @@ import { Response, Request } from "express";
  * List of API examples.
  */
 export const getApi = (req: Request, res: Response) => {
-  res.render("api/index", {
-    title: "API Examples",
-  });
+  res.status(200).json({ title: "API Examples" });
 };
