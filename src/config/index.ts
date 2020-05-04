@@ -1,18 +1,9 @@
 import dotenv from "dotenv";
 import Joi from "@hapi/joi";
-import fs from "fs";
 
-if (fs.existsSync("./../../.env")) {
-  // logger.debug("Using .env file to supply config environment variables");
-  dotenv.config({ path: "./../../.env" });
-  console.log("using .env");
-} else {
-  // logger.debug(
-  //   "Using .env.example file to supply config environment variables"
-  // );
-  console.log("using .env.examnple");
-  dotenv.config({ path: "./../../.env.example" }); // you can delete this after you create your own .env file!
-}
+dotenv.config();
+// dotenv.config({ path: "./../../.env" });
+console.log("using .env");
 
 const envVarsSchema = Joi.object()
   .keys({

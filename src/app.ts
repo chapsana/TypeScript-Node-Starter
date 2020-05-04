@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import compression from "compression"; // compresses requests
+import compression from "compression";
 import session from "express-session";
 import bodyParser from "body-parser";
 import lusca from "lusca";
@@ -26,11 +26,11 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
+    console.log("Mongo Connected");
   })
   .catch((err) => {
     console.log(
-      "MongoDB connection error. Please make sure MongoDB is running. " + err
+      "MongoDB connection error. Please make sure MongoDB is running. " + err.message
     );
   });
 
@@ -44,6 +44,7 @@ app.set("view engine", "pug");
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   session({
     resave: true,
@@ -58,12 +59,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
 });
+
+//
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
   if (

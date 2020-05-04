@@ -46,21 +46,6 @@ passport.use(
 );
 
 /**
- * OAuth Strategy Overview
- *
- * - User is already logged in.
- *   - Check if there is an existing account with a provider id.
- *     - If there is, return an error message. (Account merging not supported)
- *     - Else link new OAuth account with currently logged-in user.
- * - User is not logged in.
- *   - Check if it's a returning user.
- *     - If returning user, sign in and we are done.
- *     - Else check if there is an existing account with user's email.
- *       - If there is, return an error message.
- *       - Else create a new account.
- */
-
-/**
  * Login Required middleware.
  */
 export const isAuthenticated = (
