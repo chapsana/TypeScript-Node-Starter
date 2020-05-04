@@ -39,7 +39,7 @@
         "mongoose": "^5.7.5",
         "nodemailer": "^6.3.0",
         "passport": "^0.4.0",
-        "passport-facebook": "^3.0.0",
+
         "passport-local": "^1.0.0",
         "pug": "^2.0.4",
         "winston": "^3.2.1"
@@ -52,7 +52,6 @@
         "@types/chai": "^4.2.3",
         "@types/compression": "^1.0.1",
         "@types/concurrently": "^4.1.0",
-        "@types/connect-mongo": "^3.0.0",
         "@types/errorhandler": "^0.0.32",
         "@types/eslint": "^6.1.1",
         "@types/express": "^4.17.1",
@@ -68,14 +67,13 @@
         "@types/node-sass": "^4.11.0",
         "@types/nodemailer": "^6.2.1",
         "@types/passport": "^1.0.1",
-        "@types/passport-facebook": "^2.1.9",
+
         "@types/passport-local": "^1.0.33",
         "@types/pug": "^2.0.4",
         "@types/request": "^2.48.3",
         "@types/request-promise": "^4.1.44",
         "@types/shelljs": "^0.8.5",
         "@types/supertest": "^2.0.8",
-        "@types/winston": "^2.4.4",
         "@typescript-eslint/eslint-plugin": "^2.3.1",
         "@typescript-eslint/parser": "^2.3.1",
         "chai": "^4.2.0",

@@ -10,19 +10,17 @@ import mongoose from "mongoose";
 import passport from "passport";
 import bluebird from "bluebird";
 import routes from "./routes";
-import { MONGODB_URI, SESSION_SECRET } from "./config";
+import env from "./config";
 
 const MongoStore = mongo(session);
 
 // Create Express server
 const app: Application = express();
 
-// Connect to MongoDB
-const mongoUrl = MONGODB_URI;
 mongoose.Promise = bluebird;
 
 mongoose
-  .connect(mongoUrl, {
+  .connect(env.MONGODB_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -50,9 +48,9 @@ app.use(
   session({
     resave: true,
     saveUninitialized: true,
-    secret: SESSION_SECRET,
+    secret: env.SESSION_SECRET,
     store: new MongoStore({
-      url: mongoUrl,
+      url: env.MONGODB_URI,
       autoReconnect: true,
     }),
   })

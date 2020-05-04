@@ -1,16 +1,17 @@
-import logger from "./logger";
 import dotenv from "dotenv";
 import Joi from "@hapi/joi";
 import fs from "fs";
 
-if (fs.existsSync(".env")) {
-  logger.debug("Using .env file to supply config environment variables");
-  dotenv.config({ path: ".env" });
+if (fs.existsSync("./../../.env")) {
+  // logger.debug("Using .env file to supply config environment variables");
+  dotenv.config({ path: "./../../.env" });
+  console.log("using .env");
 } else {
-  logger.debug(
-    "Using .env.example file to supply config environment variables"
-  );
-  dotenv.config({ path: ".env.example" }); // you can delete this after you create your own .env file!
+  // logger.debug(
+  //   "Using .env.example file to supply config environment variables"
+  // );
+  console.log("using .env.examnple");
+  dotenv.config({ path: "./../../.env.example" }); // you can delete this after you create your own .env file!
 }
 
 const envVarsSchema = Joi.object()
@@ -48,7 +49,7 @@ if (error) {
   throw new Error(`Config validation error: ${error.message}`);
 }
 
-module.exports = {
+export = {
   ENVIRONMENT: envVars.NODE_ENV,
   port: envVars.PORT,
   SESSION_SECRET: envVars.SECRET,
