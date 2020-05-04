@@ -1,12 +1,20 @@
-sudo: false
 language: node_js
-node_js:    
-    - "10"
+node_js:
+  - "12"
 services:
-    - mongodb
-cache:
-    directories:
-        - node_modules
+  - mongodb
+cache: yarn
+branches:
+  only:
+    - master
+env:
+  global:
+    - PORT=3000
+    - MONGODB_URL=<your-mongoDB-url-here>
+    - JWT_SECRET=thisisasamplesecret
+    - JWT_ACCESS_EXPIRATION_MINUTES=30
+    - JWT_REFRESH_EXPIRATION_DAYS=30
 script:
-    - npm run build
-    - npm run test
+  - yarn lint
+  - yarn test
+after_success: yarn coverage:coveralls
