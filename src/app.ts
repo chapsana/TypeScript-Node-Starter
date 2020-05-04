@@ -10,7 +10,7 @@ import mongoose from "mongoose";
 import passport from "passport";
 import bluebird from "bluebird";
 import routes from "./routes";
-import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
+import { MONGODB_URI, SESSION_SECRET } from "./config";
 
 const MongoStore = mongo(session);
 
